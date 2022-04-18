@@ -1,0 +1,143 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: Verdana, Tahoma, sans-serif;
+    position: relative;
+}
+
+.container {
+    margin: 30px auto;
+    width: 1000px;
+    position: relative;
+}
+
+.start-game {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: hsla(212, 100%, 50%, 0.7);
+    z-index: 5;
+}
+.start-game button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 35px;
+    font-weight: bold;
+    padding: 15px;
+    border-radius: 15px;
+    background-color: #2e9419;
+    border: none;
+    cursor: pointer;
+}
+
+.start-game button:hover {
+    background-color: #237712;
+}
+
+.game-over-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: hsla(0, 100%, 50%, 0.7);
+    z-index: 5;
+}
+.game-over-container button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 35px;
+    font-weight: bold;
+    padding: 15px;
+    border-radius: 15px;
+    background-color: #32a4e7;
+    border: none;
+    cursor: pointer;
+}
+
+.game-over-container button:hover {
+    background-color: #2b7faf;
+}
+
+.head-container {
+    min-width: 100%;
+    padding: 20px;
+    margin-bottom: 15px;
+    border: 3px solid #32a5e7;
+    display: flex;
+    justify-content: space-between;
+}
+.head-container .tries {
+    padding-right: 40px;
+}
+
+.block-container {
+    width: 100%;
+    padding: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background-color: #ece9e9;
+    gap: 15px;
+}
+
+.block-container .block {
+    width: 180px;
+    height: 180px;
+    background-color: #fff;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: 1s;
+    cursor: pointer;
+}
+
+.dont-work {
+    pointer-events: none;
+}
+
+.block-container .block.flipped,
+.block-container .block.verified {
+    transform: rotateY(180deg);
+}
+
+.block-container .block .face {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 5px;
+    border: 3px solid #2598c5;
+}
+
+.block-container .block .front img {
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+}
+
+.block-container .block .front {
+    transform: rotateY(180deg);
+}
+
+.block-container .block .back::before {
+    content: "?";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    font-size: 140px;
+    text-align: center;
+    background-color: #2598c5;
+}
+
