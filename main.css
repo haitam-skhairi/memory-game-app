@@ -69,6 +69,35 @@ body {
     background-color: #2b7faf;
 }
 
+.congratulations {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: hsla(64, 100%, 50%, 0.7);
+    z-index: 5;
+    text-align: center;
+}
+
+.congratulations button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 35px;
+    font-weight: bold;
+    padding: 15px;
+    border-radius: 15px;
+    background-color: #e79932;
+    border: none;
+    cursor: pointer;
+}
+
+.congratulations button:hover {
+    background-color: #a56e25;
+}
+
 .head-container {
     min-width: 100%;
     padding: 20px;

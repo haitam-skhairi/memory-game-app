@@ -22,12 +22,21 @@ startGameButton.addEventListener("click", () => {
   }
   startGame.remove();
 
-  // Open The blocks 2min fo see it
+  // Add class dont-work to the container blocks
+  blockContainer.classList.add("dont-work");
+
+  // Open The blocks 5min fo see it
   blocks.forEach((block) => {
+    // Add class dont-work to the blocks
+    // block.classList.add("dont-work");
+
     block.classList.add("flipped");
     setTimeout(() => {
       block.classList.remove("flipped");
-    }, 2000);
+
+      // Remove class dont-work to the blocks
+      blockContainer.classList.remove("dont-work");
+    }, 5000);
   });
 });
 
@@ -114,7 +123,7 @@ function stopClicking() {
 // Get the Tries Span Element
 let numberOfTries = document.getElementById("tries-gaming");
 
-numberOfTries.textContent = 10;
+numberOfTries.textContent = 5;
 
 function cheker(firstBlock, secoundBlock) {
   if (firstBlock.dataset.technology === secoundBlock.dataset.technology) {
@@ -172,6 +181,47 @@ function cheker(firstBlock, secoundBlock) {
         });
       }, 3000);
     }
-    // }
+  }
+
+  // Filter Array Fron Verified Classes
+
+  let AllVerifiedBlocks = blocks.filter((block) =>
+    block.classList.contains("verified")
+  );
+
+  console.log(AllVerifiedBlocks.length);
+  if (AllVerifiedBlocks.length === blocks.length) {
+    setTimeout(() => {
+      // Play Congratulations Sound
+
+      document.getElementById("congratulations").play();
+      // Display Congratulations over
+
+      let congratulationsDiv = document.createElement("div");
+
+      let congratulationsbutton = document.createElement("button");
+
+      let congratulationsText = document.createTextNode("Restart Game");
+
+      // Append Text inside button
+
+      congratulationsbutton.appendChild(congratulationsText);
+
+      // Append button inside Div
+
+      congratulationsDiv.appendChild(congratulationsbutton);
+
+      // Append Div Container inside Body
+
+      document.body.appendChild(congratulationsDiv);
+
+      congratulationsDiv.classList.add("congratulations");
+
+      // Retry The Game on click
+
+      congratulationsbutton.addEventListener("click", () => {
+        window.location.reload();
+      });
+    }, 2000);
   }
 }
