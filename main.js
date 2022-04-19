@@ -1,3 +1,6 @@
+// Duration
+let duration = 1000;
+
 // Get the Block Element
 
 let blockContainer = document.querySelector(".block-container");
@@ -36,7 +39,7 @@ startGameButton.addEventListener("click", () => {
 
       // Remove class dont-work to the blocks
       blockContainer.classList.remove("dont-work");
-    }, 5000);
+    }, duration * 10);
   });
 });
 
