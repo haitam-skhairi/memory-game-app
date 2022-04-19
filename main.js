@@ -159,13 +159,19 @@ function cheker(firstBlock, secoundBlock) {
 
         let gameOverContainer = document.createElement("div");
 
+        let gameOverContainerText = document.createTextNode("Game Over");
+
         let gameOverButtun = document.createElement("button");
 
-        let gameOverText = document.createTextNode("Game Over");
+        let gameOverButtunText = document.createTextNode("Restart Game");
 
         // Append Text inside button
 
-        gameOverButtun.appendChild(gameOverText);
+        gameOverButtun.appendChild(gameOverButtunText);
+
+        // Append Button inside Div Container
+
+        gameOverContainer.appendChild(gameOverContainerText);
 
         // Append Button inside Div Container
 
@@ -192,7 +198,6 @@ function cheker(firstBlock, secoundBlock) {
     block.classList.contains("verified")
   );
 
-  console.log(AllVerifiedBlocks.length);
   if (AllVerifiedBlocks.length === blocks.length) {
     setTimeout(() => {
       // Play Congratulations Sound
@@ -202,13 +207,19 @@ function cheker(firstBlock, secoundBlock) {
 
       let congratulationsDiv = document.createElement("div");
 
+      let congratulationsText = document.createTextNode("Congratulations");
+
       let congratulationsbutton = document.createElement("button");
 
-      let congratulationsText = document.createTextNode("Restart Game");
+      let congratulationsButtonText = document.createTextNode("Next Level");
 
       // Append Text inside button
 
-      congratulationsbutton.appendChild(congratulationsText);
+      congratulationsbutton.appendChild(congratulationsButtonText);
+
+      // Append button inside Div
+
+      congratulationsDiv.appendChild(congratulationsText);
 
       // Append button inside Div
 

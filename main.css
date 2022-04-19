@@ -50,7 +50,34 @@ body {
     height: 100vh;
     background-color: hsla(0, 100%, 50%, 0.7);
     z-index: 5;
+    font-size: 50px;
+    text-align: center;
+    font-weight: bold;
+    padding-top: 25vh;
+    transition: 1s;
+    animation: game-over 2s ease-out;
 }
+
+@keyframes game-over {
+
+    0%,
+    15%,
+    25%,
+    35%,
+    45% {
+        padding-top: 10vh;
+    }
+    
+    10%,
+    20%,
+    30%,
+    40%,
+    100% {
+        padding-top: 25vh;
+    }
+    
+}
+
 .game-over-container button {
     position: absolute;
     top: 50%;
@@ -78,6 +105,23 @@ body {
     background-color: hsla(64, 100%, 50%, 0.7);
     z-index: 5;
     text-align: center;
+    font-size: 50px;
+    font-weight: bold;
+    padding-top: 25vh;
+    transition: 1s;
+    animation: congratulations 1s linear;
+}
+
+@keyframes congratulations {
+
+    0% {
+        letter-spacing: 200px;
+    }
+
+    100% {
+        letter-spacing: normal;
+    }
+    
 }
 
 .congratulations button {
@@ -176,6 +220,14 @@ body {
 
 @media (max-width: 991px) {
 
+    /* congratulations */
+
+    .congratulations button {
+        font-size: 25px;
+        padding: 15px;
+        border-radius: 7px;
+    }
+
     .start-game button {
         font-size: 25px;
         padding: 15px;
@@ -211,6 +263,12 @@ body {
 /* Mobile Screen */
 
 @media (max-width: 767px) {
+
+    .congratulations button {
+        font-size: 25px;
+        padding: 10px;
+        border-radius: 7px;
+    }
 
     .start-game button {
         font-size: 25px;
