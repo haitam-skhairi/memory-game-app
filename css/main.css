@@ -58,25 +58,6 @@ body {
     animation: game-over 2s ease-out;
 }
 
-@keyframes game-over {
-
-    0%,
-    15%,
-    25%,
-    35%,
-    45% {
-        padding-top: 10vh;
-    }
-    
-    10%,
-    20%,
-    30%,
-    40%,
-    100% {
-        padding-top: 25vh;
-    }
-    
-}
 
 .game-over-container button {
     position: absolute;
@@ -110,18 +91,6 @@ body {
     padding-top: 25vh;
     transition: 1s;
     animation: congratulations 1s linear;
-}
-
-@keyframes congratulations {
-
-    0% {
-        letter-spacing: 200px;
-    }
-
-    100% {
-        letter-spacing: normal;
-    }
-    
 }
 
 .congratulations button {
@@ -159,7 +128,7 @@ body {
     padding: 15px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-around;
     background-color: #ece9e9;
     gap: 15px;
 }
@@ -215,6 +184,64 @@ body {
     background-color: #2598c5;
 }
 
+.top-players {
+    min-width: 100%;
+    padding: 20px;
+    margin: 15px 0;
+    border: 3px solid #32a5e7;
+}
+
+.top-players h2 {
+    margin-bottom: 25px;
+    color: #2598c5;
+}
+
+.top-players .player {
+    display: flex;
+    margin: 10px 0;
+}
+
+.top-players .player img {
+    margin-right: 15px;
+    border-radius: 50%;
+}
+
+.top-players .player .info h3 {
+    margin-bottom: 5px;
+}
+
+/* Animations */
+
+@keyframes game-over {
+
+    0%,
+    15%,
+    25%,
+    35%,
+    45% {
+        padding-top: 10vh;
+    }
+    
+    10%,
+    20%,
+    30%,
+    40%,
+    100% {
+        padding-top: 25vh;
+    }
+}
+
+@keyframes congratulations {
+
+    0% {
+        letter-spacing: 200px;
+    }
+
+    100% {
+        letter-spacing: normal;
+    }
+    
+}
 
 /* Medium Screen */
 

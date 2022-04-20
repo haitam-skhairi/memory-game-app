@@ -1,6 +1,11 @@
 // Duration
 let duration = 1000;
 
+// Get the Tries Span Element
+let numberOfTries = document.getElementById("tries-gaming");
+
+numberOfTries.textContent = 5;
+
 // Get the Block Element
 
 let blockContainer = document.querySelector(".block-container");
@@ -14,7 +19,13 @@ let nameOfGamer = document.getElementById("name-of-gamer");
 let startGame = document.getElementById("start-game");
 let startGameButton = document.querySelector(".start-game button");
 
+// Get Counter
+let counter = document.getElementById("counter");
+
+counter.textContent = 60;
+
 // Starting Game Function
+
 startGameButton.addEventListener("click", () => {
   let gamerName = prompt("Write Your Name");
 
@@ -31,7 +42,6 @@ startGameButton.addEventListener("click", () => {
   // Open The blocks 5min fo see it
   blocks.forEach((block) => {
     // Add class dont-work to the blocks
-    // block.classList.add("dont-work");
 
     block.classList.add("flipped");
     setTimeout(() => {
@@ -41,6 +51,12 @@ startGameButton.addEventListener("click", () => {
       blockContainer.classList.remove("dont-work");
     }, duration * 10);
   });
+
+  setTimeout(() => {
+    // Call Play Counter Function
+
+    playCounter();
+  }, duration * 10);
 });
 
 // Create new Array use it to range the blocks
@@ -109,24 +125,7 @@ function flippedBlock(flippedBlockEl) {
   cheker(AllFlippedBlocks[0], AllFlippedBlocks[1]);
 }
 
-// Stop clicking Function
-
-function stopClicking() {
-  blocks.forEach((block) => {
-    block.classList.add("dont-work");
-    setTimeout(() => {
-      block.classList.remove("flipped");
-      block.classList.remove("dont-work");
-    }, 1000);
-  });
-}
-
 // Cheker Function
-
-// Get the Tries Span Element
-let numberOfTries = document.getElementById("tries-gaming");
-
-numberOfTries.textContent = 5;
 
 function cheker(firstBlock, secoundBlock) {
   if (firstBlock.dataset.technology === secoundBlock.dataset.technology) {
@@ -151,44 +150,10 @@ function cheker(firstBlock, secoundBlock) {
     if (numberOfTries.textContent === "0") {
       // Add class dont-work to the container blocks
       blockContainer.classList.add("dont-work");
-      setTimeout(() => {
-        // Play Game Over Sound
 
-        document.getElementById("game-over").play();
-        // Display the Game over
+      // Call Game Over Function
 
-        let gameOverContainer = document.createElement("div");
-
-        let gameOverContainerText = document.createTextNode("Game Over");
-
-        let gameOverButtun = document.createElement("button");
-
-        let gameOverButtunText = document.createTextNode("Restart Game");
-
-        // Append Text inside button
-
-        gameOverButtun.appendChild(gameOverButtunText);
-
-        // Append Button inside Div Container
-
-        gameOverContainer.appendChild(gameOverContainerText);
-
-        // Append Button inside Div Container
-
-        gameOverContainer.appendChild(gameOverButtun);
-
-        // Append Div Container inside Body
-
-        document.body.appendChild(gameOverContainer);
-
-        gameOverContainer.classList.add("game-over-container");
-
-        // Retry The Game on click
-
-        gameOverButtun.addEventListener("click", () => {
-          window.location.reload();
-        });
-      }, 3000);
+      gameOver();
     }
   }
 
@@ -199,43 +164,119 @@ function cheker(firstBlock, secoundBlock) {
   );
 
   if (AllVerifiedBlocks.length === blocks.length) {
-    setTimeout(() => {
-      // Play Congratulations Sound
+    // Call congratulations Function
 
-      document.getElementById("congratulations").play();
-      // Display Congratulations over
-
-      let congratulationsDiv = document.createElement("div");
-
-      let congratulationsText = document.createTextNode("Congratulations");
-
-      let congratulationsbutton = document.createElement("button");
-
-      let congratulationsButtonText = document.createTextNode("Next Level");
-
-      // Append Text inside button
-
-      congratulationsbutton.appendChild(congratulationsButtonText);
-
-      // Append button inside Div
-
-      congratulationsDiv.appendChild(congratulationsText);
-
-      // Append button inside Div
-
-      congratulationsDiv.appendChild(congratulationsbutton);
-
-      // Append Div Container inside Body
-
-      document.body.appendChild(congratulationsDiv);
-
-      congratulationsDiv.classList.add("congratulations");
-
-      // Retry The Game on click
-
-      congratulationsbutton.addEventListener("click", () => {
-        window.location.reload();
-      });
-    }, 2000);
+    congratulations();
   }
+}
+
+// Play counter Function
+
+function playCounter() {
+  let counterIntervale = setInterval(() => {
+    counter.textContent--;
+
+    if (counter.textContent === "0") {
+      // Call Game Over Function
+      gameOver();
+
+      clearInterval(counterIntervale);
+    }
+  }, duration);
+}
+
+// Stop clicking Function
+
+function stopClicking() {
+  blocks.forEach((block) => {
+    block.classList.add("dont-work");
+    setTimeout(() => {
+      block.classList.remove("flipped");
+      block.classList.remove("dont-work");
+    }, duration);
+  });
+}
+
+// Game Over Function
+
+function gameOver() {
+  setTimeout(() => {
+    // Play Game Over Sound
+
+    document.getElementById("game-over").play();
+    // Display the Game over
+
+    let gameOverContainer = document.createElement("div");
+
+    let gameOverContainerText = document.createTextNode("Game Over");
+
+    let gameOverButtun = document.createElement("button");
+
+    let gameOverButtunText = document.createTextNode("Restart Game");
+
+    // Append Text inside button
+
+    gameOverButtun.appendChild(gameOverButtunText);
+
+    // Append Button inside Div Container
+
+    gameOverContainer.appendChild(gameOverContainerText);
+
+    // Append Button inside Div Container
+
+    gameOverContainer.appendChild(gameOverButtun);
+
+    // Append Div Container inside Body
+
+    document.body.appendChild(gameOverContainer);
+
+    gameOverContainer.classList.add("game-over-container");
+
+    // Retry The Game on click
+
+    gameOverButtun.addEventListener("click", () => {
+      window.location.reload();
+    });
+  }, duration);
+}
+
+function congratulations() {
+  setTimeout(() => {
+    // Play Congratulations Sound
+
+    document.getElementById("congratulations").play();
+    // Display Congratulations over
+
+    let congratulationsDiv = document.createElement("div");
+
+    let congratulationsText = document.createTextNode("Congratulations");
+
+    let congratulationsbutton = document.createElement("button");
+
+    let congratulationsButtonText = document.createTextNode("Next Level");
+
+    // Append Text inside button
+
+    congratulationsbutton.appendChild(congratulationsButtonText);
+
+    // Append button inside Div
+
+    congratulationsDiv.appendChild(congratulationsText);
+
+    // Append button inside Div
+
+    congratulationsDiv.appendChild(congratulationsbutton);
+
+    // Append Div Container inside Body
+
+    document.body.appendChild(congratulationsDiv);
+
+    congratulationsDiv.classList.add("congratulations");
+
+    // Retry The Game on click
+
+    congratulationsbutton.addEventListener("click", () => {
+      window.location.reload();
+    });
+  }, duration);
 }
