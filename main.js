@@ -6,6 +6,11 @@ let numberOfTries = document.getElementById("tries-gaming");
 
 numberOfTries.textContent = 5;
 
+// localStorage.setItem(
+//   `${localStorage.getItem("player-name")}Tries`,
+//   numberOfTries.textContent
+// );
+
 // Get the Block Element
 
 let blockContainer = document.querySelector(".block-container");
@@ -24,10 +29,17 @@ let counter = document.getElementById("counter");
 
 counter.textContent = 60;
 
+// localStorage.setItem(
+//   `${localStorage.getItem("player-name")}Time`,
+//   counter.textContent
+// );
+
 // Starting Game Function
 
 startGameButton.addEventListener("click", () => {
   let gamerName = prompt("Write Your Name");
+
+  // console.log(localStorage.getItem("player-name"));
 
   if (gamerName === null || gamerName === "") {
     nameOfGamer.textContent = "Unknown";
@@ -35,6 +47,12 @@ startGameButton.addEventListener("click", () => {
     nameOfGamer.textContent = gamerName;
   }
   startGame.remove();
+
+  // Set Player Name In The LocaleStorage
+
+  localStorage.setItem(`player-name`, gamerName);
+
+  localStorage.setItem(`${gamerName}player-name`, gamerName);
 
   // Add class stop-clicking to the container blocks
   blockContainer.classList.add("stop-clicking");
@@ -77,15 +95,6 @@ blocks.forEach((block, index) => {
   block.addEventListener("click", () => {
     flippedBlock(block);
   });
-});
-
-// Randomize the BackgroundColor Of The players img
-
-let playerimgs = document.querySelectorAll(".player-img");
-
-playerimgs.forEach((img) => {
-  // Call Random BackgroundColor Function
-  randomBackground(img);
 });
 
 // Shuffle function
@@ -135,6 +144,7 @@ function flippedBlock(flippedBlockEl) {
 }
 
 // Cheker Function
+console.log(numberOfTries.textContent);
 
 function cheker(firstBlock, secoundBlock) {
   if (firstBlock.dataset.technology === secoundBlock.dataset.technology) {
@@ -164,6 +174,13 @@ function cheker(firstBlock, secoundBlock) {
 
       gameOver();
     }
+
+    if (numberOfTries.textContent === 60) {
+      localStorage.setItem(
+        `${localStorage.getItem("player-name")}Tries`,
+        numberOfTries.textContent
+      );
+    }
   }
 
   // Filter Array Fron Verified Classes
@@ -178,16 +195,20 @@ function cheker(firstBlock, secoundBlock) {
     congratulations();
   }
 }
-
-// Create Player Score Function
-
-function playerScore() {}
+console.log(numberOfTries.textContent);
 
 // Play counter Function
 
 function playCounter() {
   let counterIntervale = setInterval(() => {
     counter.textContent--;
+
+    if (counter.textContent === 60) {
+      localStorage.setItem(
+        `${localStorage.getItem("player-name")}Time`,
+        counter.textContent
+      );
+    }
 
     if (counter.textContent === "0") {
       // Call Game Over Function
@@ -313,3 +334,82 @@ function randomBackground(element) {
 
   element.style.backgroundColor = `#${emptyArray.join("")}`;
 }
+
+// Create Player Score Function
+
+// playerScore();
+
+// function playerScore() {
+//   let topPlayersContainer = document.querySelector(".top-players");
+
+//   let hr = document.createElement("hr");
+
+//   let player = document.createElement("div");
+
+//   let playerImg = document.createElement("div");
+//   let playerImgText = document.createTextNode(
+//     localStorage.getItem(`${localStorage.getItem("player-name")}player-name`)[0]
+//   );
+//   playerImg.appendChild(playerImgText);
+
+//   let playerInfo = document.createElement("div");
+
+//   let playerInfoName = document.createElement("h3");
+//   let playerInfoNameText = document.createTextNode(
+//     localStorage.getItem(`${localStorage.getItem("player-name")}player-name`)
+//   );
+//   playerInfoName.appendChild(playerInfoNameText);
+
+//   let playerInfoLevel = document.createElement("p");
+//   let playerInfoLevelText = document.createTextNode("Level : 3");
+//   playerInfoLevel.appendChild(playerInfoLevelText);
+
+//   let playerInfoTime = document.createElement("p");
+//   let playerInfoTimeText = document.createTextNode(
+//     `Time : ${localStorage.getItem(
+//       `${localStorage.getItem("player-name")}Time`
+//     )}`
+//   );
+//   playerInfoTime.appendChild(playerInfoTimeText);
+
+//   let playerInfoTries = document.createElement("p");
+//   let playerInfoTriesText = document.createTextNode(
+//     `Tries : ${localStorage.getItem(
+//       `${localStorage.getItem("player-name")}Tries`
+//     )}`
+//   );
+//   playerInfoTries.appendChild(playerInfoTriesText);
+
+//   playerInfo.appendChild(playerInfoName);
+//   playerInfo.appendChild(playerInfoLevel);
+//   playerInfo.appendChild(playerInfoTime);
+//   playerInfo.appendChild(playerInfoTries);
+
+//   player.appendChild(playerImg);
+//   playerImg.classList.add("player-img");
+
+//   player.appendChild(playerInfo);
+//   playerInfo.classList.add("info");
+
+//   topPlayersContainer.appendChild(hr);
+//   topPlayersContainer.appendChild(player);
+//   player.classList.add("player");
+
+//   // Randomize the BackgroundColor Of The players img
+
+//   let playerimgs = document.querySelectorAll(".player-img");
+
+//   playerimgs.forEach((img) => {
+//     // Call Random BackgroundColor Function
+//     randomBackground(img);
+//   });
+// }
+
+// Randomize the BackgroundColor Of The players img
+
+let playerimgs = document.querySelectorAll(".player-img");
+
+playerimgs.forEach((img) => {
+  // Call Random BackgroundColor Function
+  randomBackground(img);
+});
