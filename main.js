@@ -36,27 +36,27 @@ startGameButton.addEventListener("click", () => {
   }
   startGame.remove();
 
-  // Add class dont-work to the container blocks
-  blockContainer.classList.add("dont-work");
+  // Add class stop-clicking to the container blocks
+  blockContainer.classList.add("stop-clicking");
 
-  // Open The blocks 5min fo see it
+  // Open The blocks 5min for see it
   blocks.forEach((block) => {
-    // Add class dont-work to the blocks
+    // Add class stop-clicking to the blocks
 
     block.classList.add("flipped");
     setTimeout(() => {
       block.classList.remove("flipped");
 
-      // Remove class dont-work to the blocks
-      blockContainer.classList.remove("dont-work");
-    }, duration * 10);
+      // Remove class stop-clicking to the blocks
+      blockContainer.classList.remove("stop-clicking");
+    }, duration * 1);
   });
 
   setTimeout(() => {
     // Call Play Counter Function
 
     playCounter();
-  }, duration * 10);
+  }, duration * 1);
 });
 
 // Create new Array use it to range the blocks
@@ -77,6 +77,15 @@ blocks.forEach((block, index) => {
   block.addEventListener("click", () => {
     flippedBlock(block);
   });
+});
+
+// Randomize the BackgroundColor Of The players img
+
+let playerimgs = document.querySelectorAll(".player-img");
+
+playerimgs.forEach((img) => {
+  // Call Random BackgroundColor Function
+  randomBackground(img);
 });
 
 // Shuffle function
@@ -148,8 +157,8 @@ function cheker(firstBlock, secoundBlock) {
     document.getElementById("failed-try").play();
 
     if (numberOfTries.textContent === "0") {
-      // Add class dont-work to the container blocks
-      blockContainer.classList.add("dont-work");
+      // Add class stop-clicking to the container blocks
+      blockContainer.classList.add("stop-clicking");
 
       // Call Game Over Function
 
@@ -170,6 +179,10 @@ function cheker(firstBlock, secoundBlock) {
   }
 }
 
+// Create Player Score Function
+
+function playerScore() {}
+
 // Play counter Function
 
 function playCounter() {
@@ -182,6 +195,10 @@ function playCounter() {
 
       clearInterval(counterIntervale);
     }
+
+    if (numberOfTries.textContent === "0") {
+      clearInterval(counterIntervale);
+    }
   }, duration);
 }
 
@@ -189,10 +206,12 @@ function playCounter() {
 
 function stopClicking() {
   blocks.forEach((block) => {
-    block.classList.add("dont-work");
+    block.classList.add("stop-clicking");
     setTimeout(() => {
       block.classList.remove("flipped");
-      block.classList.remove("dont-work");
+      if (!block.classList.contains("verified")) {
+        block.classList.remove("stop-clicking");
+      }
     }, duration);
   });
 }
@@ -279,4 +298,18 @@ function congratulations() {
       window.location.reload();
     });
   }, duration);
+}
+
+// Random BackgoundColor Function
+
+function randomBackground(element) {
+  let newArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "A", "B", "C", "D", "E", "F"];
+
+  let emptyArray = [];
+
+  for (let i = 1; i < 7; i++) {
+    emptyArray.push(newArray[Math.floor(Math.random() * newArray.length)]);
+  }
+
+  element.style.backgroundColor = `#${emptyArray.join("")}`;
 }
