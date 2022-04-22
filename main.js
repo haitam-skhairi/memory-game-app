@@ -67,14 +67,14 @@ startGameButton.addEventListener("click", () => {
 
       // Remove class stop-clicking to the blocks
       blockContainer.classList.remove("stop-clicking");
-    }, duration * 1);
+    }, duration * 10);
   });
 
   setTimeout(() => {
     // Call Play Counter Function
 
     playCounter();
-  }, duration * 1);
+  }, duration * 10);
 });
 
 // Create new Array use it to range the blocks
