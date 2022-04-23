@@ -39,8 +39,6 @@ counter.textContent = 60;
 startGameButton.addEventListener("click", () => {
   let gamerName = prompt("Write Your Name");
 
-  // console.log(localStorage.getItem("player-name"));
-
   if (gamerName === null || gamerName === "") {
     nameOfGamer.textContent = "Unknown";
   } else {
@@ -143,8 +141,12 @@ function flippedBlock(flippedBlockEl) {
   cheker(AllFlippedBlocks[0], AllFlippedBlocks[1]);
 }
 
+// Filter Array Fron Verified Classes
+
+let AllVerifiedBlocks = blocks.filter((block) =>
+  block.classList.contains("verified")
+);
 // Cheker Function
-console.log(numberOfTries.textContent);
 
 function cheker(firstBlock, secoundBlock) {
   if (firstBlock.dataset.technology === secoundBlock.dataset.technology) {
@@ -175,7 +177,7 @@ function cheker(firstBlock, secoundBlock) {
       gameOver();
     }
 
-    if (numberOfTries.textContent === 60) {
+    if (numberOfTries.textContent === 5) {
       localStorage.setItem(
         `${localStorage.getItem("player-name")}Tries`,
         numberOfTries.textContent
@@ -193,9 +195,9 @@ function cheker(firstBlock, secoundBlock) {
     // Call congratulations Function
 
     congratulations();
+    clearInterval(counterIntervale);
   }
 }
-console.log(numberOfTries.textContent);
 
 // Play counter Function
 
@@ -218,6 +220,18 @@ function playCounter() {
     }
 
     if (numberOfTries.textContent === "0") {
+      clearInterval(counterIntervale);
+    }
+
+    // Filter Array Fron Verified Classes
+
+    console.log(`hi , `);
+    let AllVerifiedBlocksTwo = blocks.filter((block) =>
+      block.classList.contains("verified")
+    );
+
+    if (AllVerifiedBlocksTwo.length === blocks.length) {
+      // Clear Interval if player finish the game
       clearInterval(counterIntervale);
     }
   }, duration);
@@ -247,27 +261,21 @@ function gameOver() {
     // Display the Game over
 
     let gameOverContainer = document.createElement("div");
-
     let gameOverContainerText = document.createTextNode("Game Over");
 
     let gameOverButtun = document.createElement("button");
-
     let gameOverButtunText = document.createTextNode("Restart Game");
 
     // Append Text inside button
-
     gameOverButtun.appendChild(gameOverButtunText);
 
     // Append Button inside Div Container
-
     gameOverContainer.appendChild(gameOverContainerText);
 
     // Append Button inside Div Container
-
     gameOverContainer.appendChild(gameOverButtun);
 
     // Append Div Container inside Body
-
     document.body.appendChild(gameOverContainer);
 
     gameOverContainer.classList.add("game-over-container");

@@ -37,6 +37,7 @@ body {
     background-color: #2e9419;
     border: none;
     cursor: pointer;
+    user-select: none;
 }
 
 .start-game button:hover {
@@ -72,6 +73,7 @@ body {
     background-color: #32a4e7;
     border: none;
     cursor: pointer;
+    user-select: none;
 }
 
 .game-over-container button:hover {
@@ -91,6 +93,7 @@ body {
     font-weight: bold;
     padding-top: 25vh;
     transition: 1s;
+    user-select: none;
     animation: congratulations 1s linear;
 }
 
