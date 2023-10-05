@@ -21,4 +21,4 @@ What are you getting from my job?
 Are you Ready to hire me? If you are not able to find your project solutions from anywhere, Don't forget to inform me about your project. Knock me anytime to discuss your project.
 
 ## Demo
-https://haitam-skhairi.github.io/flipped-game/
+https://haitam-skhairi.github.io/memory-game-app/
